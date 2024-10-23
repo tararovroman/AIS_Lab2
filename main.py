@@ -1,16 +1,21 @@
+import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-
-# Генерация данных
+# 1. Генерация данных
 x1 = np.linspace(0, 10, 500)
 x2 = np.linspace(5, 15, 500)
 y = x1**6 + x2**2 + x1**3 + 4*x2 + 5
+
+# Запись данных в graph.csv
+df = pd.DataFrame({'x1': x1, 'x2': x2, 'y': y})
+df.to_csv('graph.csv', index=False)
 
 # Используем meshgrid для 3D графика
 X1, X2 = np.meshgrid(x1, x2)
 Y = X1**6 + X2**2 + X1**3 + 4*X2 + 5
 
+# Создаем окно с несколькими подграфиками
 fig = plt.figure(figsize=(15, 10))
 
 # Первый 2D график: y(x1) при фиксированном x2
@@ -41,6 +46,7 @@ ax3.set_xlabel('x1')
 ax3.set_ylabel('x2')
 ax3.set_zlabel('y')
 
+# Отображение всех графиков в одном окне
 plt.tight_layout()
 plt.show()
 
